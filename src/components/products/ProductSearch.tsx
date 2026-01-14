@@ -1,6 +1,5 @@
 "use client"
 import { useDebounce } from '@/hooks/useDebounce'
-import { on } from 'events'
 import React, { useEffect, useState } from 'react'
 
 interface ProductSearchProps {

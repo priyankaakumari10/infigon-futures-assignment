@@ -76,6 +76,10 @@ const ProductList = ({ products }: ProductListProps) => {
           filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))
+        ) : products.length === 0 ? (
+          <div className="col-span-full text-center py-8 text-gray-500">
+            No products available at the moment. Please try again later.
+          </div>
         ) : (
           <div className="col-span-full text-center py-8 text-gray-500">
             No products found matching &quot;{searchQuery}&quot;

@@ -13,9 +13,16 @@ const Products = async ({ searchParams }: Props) => {
     ? `/products/category/${category}`
     : `/products`
 
-  const products = await fetchJson<Product[]>((path), {
-    cache: 'no-store',
-  })
+  let products: Product[] = []
+
+  try {
+    products = await fetchJson<Product[]>(path, {
+      cache: 'no-store',
+    })
+  } catch (error) {
+    console.error('Failed to fetch products:', error)
+    products = []
+  }
 
   return <ProductList products={products} />
 }

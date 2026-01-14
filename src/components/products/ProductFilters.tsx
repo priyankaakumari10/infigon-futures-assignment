@@ -2,18 +2,20 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 
 const ProductFilters = () => {
-    const route = useRouter()
-    const seaarchParams = useSearchParams();
-    const selectedCate = seaarchParams.get('category') || '';
+    const router = useRouter()
+    const searchParams = useSearchParams();
+    const selectedCate = searchParams?.get('category') || '';
+    
     const handleFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const category = e.target.value;
-        const params = new URLSearchParams(seaarchParams.toString());
+        const params = new URLSearchParams(searchParams?.toString() || '');
         if (category) {
             params.set('category', category);
         } else {
             params.delete('category');
         }
-        route.push(`/products?${params.toString()}`);
+        const newUrl = `/products?${params.toString()}`;
+        router.push(newUrl);
     }
   return (
    <select
