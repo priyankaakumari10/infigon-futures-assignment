@@ -1,19 +1,22 @@
 import ProductCard from '@/components/products/ProductCard'
+import ProductFilters from '@/components/products/ProductFilters'
 import ProductSearch from '@/components/products/ProductSearch'
-import Image from 'next/image'
+import { Product } from '@/type/product'
 
-interface Product {
-  id: number
-  title: string
-  price: number
-  category: string
-  image: string
+interface Props {
+  searchParams: Promise<{
+    category?: string
+  }>
 }
-
-const Products = async () => {
-  const res = await fetch('https://fakestoreapi.com/products', {
-    cache: 'no-store',
-  })
+const Products = async ({ searchParams }: Props) => {
+    const category = (await searchParams).category
+    // console.log('category:', category)
+     const url = category
+    ? `https://fakestoreapi.com/products/category/${category}`
+    : `https://fakestoreapi.com/products`
+    const res = await fetch(url, {
+        cache: 'no-store',
+    })
 
   if (!res.ok) {
     throw new Error('Failed to fetch products')
@@ -24,7 +27,10 @@ const Products = async () => {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-semibold mb-6">Products</h1>
-      <ProductSearch/>
+      <div className='flex gap-2'>
+        <ProductSearch/>
+      <ProductFilters/>
+    </div>
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
         <ProductCard product={product} />
