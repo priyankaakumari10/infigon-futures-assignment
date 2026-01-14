@@ -1,4 +1,5 @@
 import ProductCard from '@/components/products/ProductCard'
+import ProductFavFilters from '@/components/products/ProductFavFilters'
 import ProductFilters from '@/components/products/ProductFilters'
 import ProductSearch from '@/components/products/ProductSearch'
 import { Product } from '@/type/product'
@@ -30,6 +31,7 @@ const Products = async ({ searchParams }: Props) => {
       <div className='flex gap-2'>
         <ProductSearch/>
       <ProductFilters/>
+      <ProductFavFilters/>
     </div>
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
