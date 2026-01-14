@@ -42,7 +42,8 @@ const ProductFavBtn = ({ productId }: { productId: number }) => {
   return (
     <button
       onClick={handleFavClick}
-      aria-label="Add to favorites"
+      aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
+      aria-pressed={isFav}
       className={`absolute top-0 right-0 rounded-full w-8 h-8 flex items-center justify-center shadow hover:scale-110 transition cursor-pointer z-10 ${isFav ? 'bg-white' : 'bg-sky-200'}`}
     >
       <span className="text-base">

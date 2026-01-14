@@ -1,5 +1,7 @@
 import ProductList from '@/components/products/ProductList'
 import { Product } from '@/type/product'
+import { fetchJson } from '@/lib/fetchJson'
+import { buildApiUrl } from '@/config/api'
 
 interface Props {
   searchParams: Promise<{
@@ -7,19 +9,14 @@ interface Props {
   }>
 }
 const Products = async ({ searchParams }: Props) => {
-    const category = (await searchParams).category
-     const url = category
-    ? `https://fakestoreapi.com/products/category/${category}`
-    : `https://fakestoreapi.com/products`
-    const res = await fetch(url, {
-        cache: 'no-store',
-    })
+  const category = (await searchParams).category
+  const path = category
+    ? `/products/category/${category}`
+    : `/products`
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch products')
-  }
-
-  const products: Product[] = await res.json()
+  const products = await fetchJson<Product[]>((path), {
+    cache: 'no-store',
+  })
 
   return <ProductList products={products} />
 }

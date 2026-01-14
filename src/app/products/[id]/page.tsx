@@ -1,14 +1,8 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-
-interface Product {
-  id: number
-  title: string
-  price: number
-  category: string
-  image: string
-  description: string
-}
+import { fetchJson } from '@/lib/fetchJson'
+import { buildApiUrl } from '@/config/api'
+import type { Product } from '@/type/product'
 
 interface ProductPageProps {
   params: Promise<{
@@ -24,22 +18,19 @@ const ProductPage = async ({ params }: ProductPageProps) => {
     notFound()
   }
 
-  const res = await fetch(
-    `https://fakestoreapi.com/products/${productId}`,
-    { cache: 'no-store' }
-  )
+  let product: Product | null = null
 
-  if (!res.ok) {
+  try {
+    product = await fetchJson<Product>(`/products/${productId}`,
+      { cache: 'no-store' }
+    )
+  } catch {
     notFound()
   }
 
-  const text = await res.text()
-
-  if (!text) {
+  if (!product) {
     notFound()
   }
-
-  const product: Product = JSON.parse(text)
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">

@@ -61,15 +61,17 @@ const ProductList = ({ products }: ProductListProps) => {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-semibold mb-6">Products</h1>
-      <div className='flex gap-2'>
+      <div className='lg:flex gap-2'>
         <ProductSearch onSearchChange={setSearchQuery} />
+        <div className='flex'>
         <ProductFilters/>
         <ProductFavFilters
           showOnlyFav={showOnlyFav}
           onToggle={() => setShowOnlyFav((prev) => !prev)}
         />
+        </div>
       </div>
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-stretch">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
