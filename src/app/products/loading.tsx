@@ -1,4 +1,4 @@
-import ProductCardSkeleton from '@/components/products/ProductCardSkeleton'
+import ProductCardSkeleton from '@/components/Skeleton/ProductCardSkeleton'
 
 const Loading = () => {
   return (

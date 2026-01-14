@@ -1,6 +1,7 @@
 import Link from 'next/dist/client/link'
 import Image from 'next/image'
-// import { Product } from '@/type/product'
+import ProductFavBtn from './ProductFavBtn'
+import { Product } from '@/type/product'
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
@@ -11,6 +12,8 @@ const ProductCard = ({ product }: { product: Product }) => {
                className="bg-background rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col"
              >
                <div className="relative w-full h-48 mb-4">
+                              <ProductFavBtn productId={product.id} />
+
                  <Image
                    src={product.image}
                    alt={product.title}
@@ -31,7 +34,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                  ₹{product.price}
                </p>
              </div>
-          </Link>
+           </Link>
   )
 }
 
