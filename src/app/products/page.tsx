@@ -1,7 +1,6 @@
 import ProductList from '@/components/products/ProductList'
 import { Product } from '@/type/product'
 import { fetchJson } from '@/lib/fetchJson'
-import { buildApiUrl } from '@/config/api'
 
 interface Props {
   searchParams: Promise<{
