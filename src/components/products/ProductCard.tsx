@@ -1,10 +1,13 @@
+import Link from 'next/dist/client/link'
 import Image from 'next/image'
 // import { Product } from '@/type/product'
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
+          <Link href={`/products/${product.id}`} key={product.id}
+>
+
       <div
-               key={product.id}
                className="bg-background rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col"
              >
                <div className="relative w-full h-48 mb-4">
@@ -28,6 +31,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                  ₹{product.price}
                </p>
              </div>
+          </Link>
   )
 }
 
