@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Product } from '@/type/product'
+// import { Product } from '@/type/product'
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
