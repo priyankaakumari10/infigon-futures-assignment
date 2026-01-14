@@ -13,7 +13,7 @@ export async function fetchJson<T>(
   const text = await res.text()
 
   if (!text) {
-    throw new Error(`Empty response from ${url}`)
+    throw new Error(`Empty response from url: ${endpoint}`)
   }
 
   return JSON.parse(text) as T

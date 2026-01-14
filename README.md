@@ -150,17 +150,7 @@ npm run lint
    - Assumes product count is manageable for client-side rendering
    - Could impact performance with large product catalogs
 
-2. **No Loading States for Filters**
-   - Category filter changes trigger full page navigation
-   - No intermediate loading indicators during filter changes
-   - Trade-off: Simpler UX vs. perceived performance
-
-3. **Limited Accessibility**
-   - Basic ARIA labels implemented
-   - Keyboard navigation may not be fully optimized
-   - Screen reader support is basic
-
-4. **No State Persistence**
+2. **No State Persistence**
    - Search query and filter state not persisted in URL (except category)
    - Page refresh loses search and favorite filter state
    - Only category filter persists via URL query params
