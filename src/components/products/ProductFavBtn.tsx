@@ -33,6 +33,10 @@ const ProductFavBtn = ({ productId }: { productId: number }) => {
       'fav_products',
       JSON.stringify(updatedFavs)
     )
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('fav_products_updated'))
+    }
   }
 
   return (
